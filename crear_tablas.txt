@@ -1,0 +1,45 @@
+CREATE TABLE empleados (
+  ci numeric(8) primary key,
+  nombre varchar(35) ,
+  direccion varchar(35),
+  fecha_nac date,
+  procedencia varchar(35) 
+) 
+
+CREATE TABLE productos (
+  Id_Producto numeric(8) primary key,
+  nombre varchar(150),
+  descripcion varchar(255),
+  precio decimal(8,2),
+  ci_e numeric(8),
+  FOREIGN KEY (ci_e) REFERENCES empleados (ci)
+) 
+
+CREATE TABLE reservas (
+  Id_Reserva numeric(8) primary key,
+  nombre varchar(150),
+  telefono varchar(10),
+  email varchar(25) unique,
+  cantidad int,
+  fecha date,
+  mensaje varchar(255),
+  ci_e numeric(8),
+  FOREIGN KEY (ci_e) REFERENCES empleados (ci)
+)
+
+insert into empleados values
+  (1 ,'Ana','sucre n12','2000-05-26','potosi'),
+  (2 ,'Juan','murillo n123','1998-04-16','potosi'),
+  (3 ,'Adriana','hoyos n56','2010-09-11','potosi'),
+  (4 ,'Andre','la paz n74','1989-11-08','potosi')
+
+insert into productos values
+  (1 ,'Cafe espresso','El espresso es un cafe fuerte de color negro muy aromatico. Es servido con crema espesa sobre la superficie.',15,2),
+  (2 ,'Cafe americano','Un cafe americano es un shot de espresso servido en una taza con agua caliente. ',15,1),
+  (3 ,'Cafe capuchino','Un capuchino es una combinacion de espresso, leche vaporizada y espuma de leche en partes iguales.',20,4)
+
+inser into reservas values 
+  (1 ,'Albert','78459645','albert@gmail.com',2,'2023-07-09','',2),
+  (2 ,'Aundrey','68653124','aundrey@gmail.com',1,'2023-07-13','Sin azucar',3),
+  (3 ,'Susi','75265432','susi@gmail.com',3,'2023-07-11','Con poca azucar los 3',4)
+
